@@ -1,0 +1,7 @@
+test_mem_perf.json
+
+SI:../../../base/hw/sim/cci_mpf_test_base_addenda.txt
+QI:../../../base/hw/par/cci_mpf_test_base_PAR_files.qsf
+
++incdir+.
+test_mem_perf.sv

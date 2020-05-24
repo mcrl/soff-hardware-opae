@@ -1,0 +1,89 @@
+#!/usr/bin/python
+
+import argparse
+import os
+import subprocess
+import sys
+import logging
+
+def print_debug(msg):
+  logging.debug(msg)
+
+def print_info(msg):
+  logging.info(msg)
+
+def print_warning(msg):
+  logging.warning(msg)
+
+def check_error(err, msg):
+  if err:
+    logging.error(msg)
+    sys.exit(1)
+
+def call_subprocess(args, fout=None):
+  args = ['stdbuf', '-oL', '-eL'] + args
+  print_debug('Command: {}'.format(' '.join(args)))
+  return subprocess.call(args, stdout=fout, stderr=subprocess.STDOUT)
+
+def check_path(path):
+  check_error(not os.path.exists(path), '{} does not exist.'.format(path))
+
+def run(args):
+  # SOFF directory structure:
+  # $SOFF_PREFIX
+  # \-bsp
+  #   |-hw-rtl-kernel.v,seed.tcl
+  #   \-Makefile
+
+  # Check $SOFF_PREFIX
+  soff_prefix = os.environ.get('SOFF_PREFIX')
+  check_error(not soff_prefix, 'Set $SOFF_PREFIX.')
+
+  # Check bsp
+  bsp_path = os.path.join(soff_prefix, 'bsp')
+  check_path(bsp_path)
+
+  # Check input
+  input_path = os.path.abspath(args.input)
+  check_path(input_path)
+
+  # Check workspace
+  workspace_path = os.path.abspath(args.workspace)
+  check_path(workspace_path)
+
+  # Output
+  output_path = os.path.abspath(args.output)
+
+  # Print contexts
+  print_debug('soff_prefix={}'.format(soff_prefix))
+  print_debug('bsp_path={}'.format(bsp_path))
+  print_debug('input_path={}'.format(input_path))
+  print_debug('output_path={}'.format(output_path))
+  print_debug('workspace_path={}'.format(workspace_path))
+
+  call_subprocess(['cp', '-r', os.path.join(bsp_path, 'hw'), workspace_path])
+  call_subprocess(['cp', '-r', os.path.join(bsp_path, 'Makefile'), workspace_path])
+  call_subprocess(['cp', '-r', input_path, os.path.join(workspace_path, 'hw/rtl/kernel.v')])
+  with open(os.path.join(workspace_path, 'hw/rtl/seed.tcl'), 'w') as fout:
+    call_subprocess(['echo', 'set_global_assignment -name SEED {}'.format(args.seed)], fout)
+  ret = call_subprocess(['make', '-C', workspace_path])
+  check_error(ret != 0, 'Synthesis error.')
+  call_subprocess(['cp', '-r', os.path.join(workspace_path, 'build_synth/config.gbs'), output_path])
+
+def main():
+  # parse arguments
+  parser = argparse.ArgumentParser()
+  parser.add_argument('--workspace', help='Everything will happen inside workspace directory')
+  parser.add_argument('--input', help='*.v')
+  parser.add_argument('--output', help='*.bin')
+  parser.add_argument('--seed', type=int, default=0, help='')
+  args = parser.parse_args()
+
+  logging.basicConfig(format='[%(asctime)s %(levelname)s] %(message)s', datefmt='%Y.%m.%d %H:%M:%S', level=logging.DEBUG)
+
+  print_debug('Command line arguments: {}'.format(args))
+
+  run(args)
+
+if __name__ == "__main__":
+  main()

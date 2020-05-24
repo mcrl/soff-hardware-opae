@@ -1,0 +1,884 @@
+<?xml version="1.0" ?>
+<spirit:component xmlns:altera="http://www.altera.com/XMLSchema/IPXact/extensions" xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+  <spirit:vendor>Intel</spirit:vendor>
+  <spirit:library>mul_u8_core</spirit:library>
+  <spirit:name>fxp_functions_0</spirit:name>
+  <spirit:version>17.1</spirit:version>
+  <spirit:busInterfaces>
+    <spirit:busInterface>
+      <spirit:name>a</spirit:name>
+      <spirit:busType spirit:vendor="altera" spirit:library="altera" spirit:name="conduit" spirit:version="17.1"></spirit:busType>
+      <spirit:slave></spirit:slave>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>a</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>a</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>associatedClock</spirit:name>
+          <spirit:displayName>associatedClock</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="associatedClock">clk</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>associatedReset</spirit:name>
+          <spirit:displayName>associatedReset</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="associatedReset">rst</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>prSafe</spirit:name>
+          <spirit:displayName>Partial Reconfiguration Safe</spirit:displayName>
+          <spirit:value spirit:format="bool" spirit:id="prSafe">false</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>b</spirit:name>
+      <spirit:busType spirit:vendor="altera" spirit:library="altera" spirit:name="conduit" spirit:version="17.1"></spirit:busType>
+      <spirit:slave></spirit:slave>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>b</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>b</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>associatedClock</spirit:name>
+          <spirit:displayName>associatedClock</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="associatedClock">clk</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>associatedReset</spirit:name>
+          <spirit:displayName>associatedReset</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="associatedReset">rst</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>prSafe</spirit:name>
+          <spirit:displayName>Partial Reconfiguration Safe</spirit:displayName>
+          <spirit:value spirit:format="bool" spirit:id="prSafe">false</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>clk</spirit:name>
+      <spirit:busType spirit:vendor="altera" spirit:library="altera" spirit:name="clock" spirit:version="17.1"></spirit:busType>
+      <spirit:slave></spirit:slave>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>clk</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>clk</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>clockRate</spirit:name>
+          <spirit:displayName>Clock rate</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="clockRate">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>externallyDriven</spirit:name>
+          <spirit:displayName>Externally driven</spirit:displayName>
+          <spirit:value spirit:format="bool" spirit:id="externallyDriven">false</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>ptfSchematicName</spirit:name>
+          <spirit:displayName>PTF schematic name</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="ptfSchematicName"></spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>en</spirit:name>
+      <spirit:busType spirit:vendor="altera" spirit:library="altera" spirit:name="conduit" spirit:version="17.1"></spirit:busType>
+      <spirit:slave></spirit:slave>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>en</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>en</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>associatedClock</spirit:name>
+          <spirit:displayName>associatedClock</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="associatedClock">clk</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>associatedReset</spirit:name>
+          <spirit:displayName>associatedReset</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="associatedReset"></spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>prSafe</spirit:name>
+          <spirit:displayName>Partial Reconfiguration Safe</spirit:displayName>
+          <spirit:value spirit:format="bool" spirit:id="prSafe">false</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>result</spirit:name>
+      <spirit:busType spirit:vendor="altera" spirit:library="altera" spirit:name="conduit" spirit:version="17.1"></spirit:busType>
+      <spirit:slave></spirit:slave>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>result</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>result</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>associatedClock</spirit:name>
+          <spirit:displayName>associatedClock</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="associatedClock">clk</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>associatedReset</spirit:name>
+          <spirit:displayName>associatedReset</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="associatedReset"></spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>prSafe</spirit:name>
+          <spirit:displayName>Partial Reconfiguration Safe</spirit:displayName>
+          <spirit:value spirit:format="bool" spirit:id="prSafe">false</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+      <spirit:vendorExtensions>
+        <altera:altera_assignments>
+          <spirit:parameters>
+            <spirit:parameter>
+              <spirit:name>ui.blockdiagram.direction</spirit:name>
+              <spirit:value spirit:format="string" spirit:id="ui.blockdiagram.direction">OUTPUT</spirit:value>
+            </spirit:parameter>
+          </spirit:parameters>
+        </altera:altera_assignments>
+      </spirit:vendorExtensions>
+    </spirit:busInterface>
+    <spirit:busInterface>
+      <spirit:name>rst</spirit:name>
+      <spirit:busType spirit:vendor="altera" spirit:library="altera" spirit:name="reset" spirit:version="17.1"></spirit:busType>
+      <spirit:slave></spirit:slave>
+      <spirit:portMaps>
+        <spirit:portMap>
+          <spirit:logicalPort>
+            <spirit:name>reset</spirit:name>
+          </spirit:logicalPort>
+          <spirit:physicalPort>
+            <spirit:name>rst</spirit:name>
+          </spirit:physicalPort>
+        </spirit:portMap>
+      </spirit:portMaps>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>associatedClock</spirit:name>
+          <spirit:displayName>Associated clock</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="associatedClock">clk</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>synchronousEdges</spirit:name>
+          <spirit:displayName>Synchronous edges</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="synchronousEdges">DEASSERT</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </spirit:busInterface>
+  </spirit:busInterfaces>
+  <spirit:model>
+    <spirit:views>
+      <spirit:view>
+        <spirit:name>QUARTUS_SYNTH</spirit:name>
+        <spirit:envIdentifier>:quartus.altera.com:</spirit:envIdentifier>
+        <spirit:modelName>altera_fxp_functions</spirit:modelName>
+        <spirit:fileSetRef>
+          <spirit:localName>QUARTUS_SYNTH</spirit:localName>
+        </spirit:fileSetRef>
+      </spirit:view>
+    </spirit:views>
+    <spirit:ports>
+      <spirit:port>
+        <spirit:name>clk</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>STD_LOGIC</spirit:typeName>
+              <spirit:viewNameRef>QUARTUS_SYNTH</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>rst</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>STD_LOGIC</spirit:typeName>
+              <spirit:viewNameRef>QUARTUS_SYNTH</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>en</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>STD_LOGIC_VECTOR</spirit:typeName>
+              <spirit:viewNameRef>QUARTUS_SYNTH</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>a</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left>0</spirit:left>
+            <spirit:right>7</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>STD_LOGIC_VECTOR</spirit:typeName>
+              <spirit:viewNameRef>QUARTUS_SYNTH</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>b</spirit:name>
+        <spirit:wire>
+          <spirit:direction>in</spirit:direction>
+          <spirit:vector>
+            <spirit:left>0</spirit:left>
+            <spirit:right>7</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>STD_LOGIC_VECTOR</spirit:typeName>
+              <spirit:viewNameRef>QUARTUS_SYNTH</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+      <spirit:port>
+        <spirit:name>result</spirit:name>
+        <spirit:wire>
+          <spirit:direction>out</spirit:direction>
+          <spirit:vector>
+            <spirit:left>0</spirit:left>
+            <spirit:right>15</spirit:right>
+          </spirit:vector>
+          <spirit:wireTypeDefs>
+            <spirit:wireTypeDef>
+              <spirit:typeName>STD_LOGIC_VECTOR</spirit:typeName>
+              <spirit:viewNameRef>QUARTUS_SYNTH</spirit:viewNameRef>
+            </spirit:wireTypeDef>
+          </spirit:wireTypeDefs>
+        </spirit:wire>
+      </spirit:port>
+    </spirit:ports>
+  </spirit:model>
+  <spirit:vendorExtensions>
+    <altera:entity_info>
+      <spirit:vendor>Intel</spirit:vendor>
+      <spirit:library>mul_u8_core</spirit:library>
+      <spirit:name>altera_fxp_functions</spirit:name>
+      <spirit:version>17.1</spirit:version>
+    </altera:entity_info>
+    <altera:altera_module_parameters>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>defer_output_format_calc</spirit:name>
+          <spirit:displayName>defer_output_format_calc</spirit:displayName>
+          <spirit:value spirit:format="bool" spirit:id="defer_output_format_calc">false</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>FUNCTION_FAMILY</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="FUNCTION_FAMILY">ALL</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>derived_function</spirit:name>
+          <spirit:displayName>derived_function</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="derived_function">MUL</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>ALL_function</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="ALL_function">MUL</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>frequency_target</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="frequency_target">200</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>latency_target</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="latency_target">3</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>performance_goal</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="performance_goal">latency</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>common_sign</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="common_sign">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>common_width</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="common_width">32</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>complex_format</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="bool" spirit:id="complex_format">false</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>complex_karatsuba</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="bool" spirit:id="complex_karatsuba">false</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>auto_output_type</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="bool" spirit:id="auto_output_type">false</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>gen_enable</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="bool" spirit:id="gen_enable">true</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>add_no_growth</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="bool" spirit:id="add_no_growth">false</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>force_mult_in_logic</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="bool" spirit:id="force_mult_in_logic">false</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>report_resources_to_xml</spirit:name>
+          <spirit:displayName>report_resources_to_xml</spirit:displayName>
+          <spirit:value spirit:format="bool" spirit:id="report_resources_to_xml">false</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>a_fxp_in_width</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="a_fxp_in_width">8</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>a_fxp_in_sign</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="a_fxp_in_sign">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>a_fxp_in_fraction</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="a_fxp_in_fraction">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>a_fxp_in_fraction_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="a_fxp_in_fraction_derived">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>a_fxp_in_width_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="a_fxp_in_width_derived">8</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>a_fxp_in_sign_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="a_fxp_in_sign_derived">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>b_fxp_in_width</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="b_fxp_in_width">8</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>b_fxp_in_sign</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="b_fxp_in_sign">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>b_fxp_in_fraction</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="b_fxp_in_fraction">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>b_fxp_in_fraction_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="b_fxp_in_fraction_derived">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>b_fxp_in_width_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="b_fxp_in_width_derived">8</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>b_fxp_in_sign_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="b_fxp_in_sign_derived">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>numerator_fxp_in_width</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="numerator_fxp_in_width">32</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>numerator_fxp_in_sign</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="numerator_fxp_in_sign">1</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>numerator_fxp_in_fraction</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="numerator_fxp_in_fraction">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>numerator_fxp_in_fraction_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="numerator_fxp_in_fraction_derived">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>numerator_fxp_in_width_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="numerator_fxp_in_width_derived">32</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>numerator_fxp_in_sign_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="numerator_fxp_in_sign_derived">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>denominator_fxp_in_width</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="denominator_fxp_in_width">32</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>denominator_fxp_in_sign</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="denominator_fxp_in_sign">1</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>denominator_fxp_in_fraction</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="denominator_fxp_in_fraction">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>denominator_fxp_in_fraction_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="denominator_fxp_in_fraction_derived">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>denominator_fxp_in_width_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="denominator_fxp_in_width_derived">32</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>denominator_fxp_in_sign_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="denominator_fxp_in_sign_derived">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>radical_fxp_in_width</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="radical_fxp_in_width">32</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>radical_fxp_in_sign</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="radical_fxp_in_sign">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>radical_fxp_in_fraction</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="radical_fxp_in_fraction">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>radical_fxp_in_fraction_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="radical_fxp_in_fraction_derived">initialization default</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>radical_fxp_in_width_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="radical_fxp_in_width_derived">initialization default</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>radical_fxp_in_sign_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="radical_fxp_in_sign_derived">initialization default</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>result_fxp_out_width</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="result_fxp_out_width">32</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>result_fxp_out_sign</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="result_fxp_out_sign">1</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>result_fxp_out_fraction</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="result_fxp_out_fraction">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>result_fxp_out_fraction_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="result_fxp_out_fraction_derived">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>result_fxp_out_width_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="result_fxp_out_width_derived">16</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>result_fxp_out_sign_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="result_fxp_out_sign_derived">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>a_in_derived_name_list</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="a_in_derived_name_list">a0,a1</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>a_in_width_list</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="a_in_width_list">32,32</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>a_in_sign_list</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="a_in_sign_list">signed,signed</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>a_in_fraction_list</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="a_in_fraction_list">0,0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>a_in_derived_width_list</spirit:name>
+          <spirit:displayName>a_in_derived_width_list</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="a_in_derived_width_list">32,32</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>a_in_derived_sign_list</spirit:name>
+          <spirit:displayName>a_in_derived_sign_list</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="a_in_derived_sign_list">1,1</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>a_in_derived_fraction_list</spirit:name>
+          <spirit:displayName>a_in_derived_fraction_list</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="a_in_derived_fraction_list">0,0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>start_value</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="start_value">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>step_value</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="step_value">1</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>limit_value</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="limit_value">65536</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>start_fxp_in_width</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="start_fxp_in_width">16</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>start_fxp_in_sign</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="start_fxp_in_sign">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>start_fxp_in_fraction</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="start_fxp_in_fraction">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>start_fxp_in_fraction_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="start_fxp_in_fraction_derived">initialization default</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>start_fxp_in_width_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="start_fxp_in_width_derived">initialization default</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>start_fxp_in_sign_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="start_fxp_in_sign_derived">initialization default</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>step_fxp_in_width</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="step_fxp_in_width">16</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>step_fxp_in_sign</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="step_fxp_in_sign">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>step_fxp_in_fraction</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="step_fxp_in_fraction">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>step_fxp_in_fraction_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="step_fxp_in_fraction_derived">initialization default</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>step_fxp_in_width_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="step_fxp_in_width_derived">initialization default</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>step_fxp_in_sign_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="step_fxp_in_sign_derived">initialization default</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>limit_fxp_in_width</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="limit_fxp_in_width">16</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>limit_fxp_in_sign</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="limit_fxp_in_sign">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>limit_fxp_in_fraction</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="limit_fxp_in_fraction">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>limit_fxp_in_fraction_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="limit_fxp_in_fraction_derived">initialization default</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>limit_fxp_in_width_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="limit_fxp_in_width_derived">initialization default</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>limit_fxp_in_sign_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="limit_fxp_in_sign_derived">initialization default</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>value_fxp_out_width</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="value_fxp_out_width">32</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>value_fxp_out_sign</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="value_fxp_out_sign">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>value_fxp_out_fraction</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="value_fxp_out_fraction">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>value_fxp_out_fraction_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="value_fxp_out_fraction_derived">initialization default</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>value_fxp_out_width_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="value_fxp_out_width_derived">initialization default</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>value_fxp_out_sign_derived</spirit:name>
+          <spirit:displayName>intel_fpga_FIXED-POINT_FUNCTIONS</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="value_fxp_out_sign_derived">initialization default</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>frequency_feedback</spirit:name>
+          <spirit:displayName>frequency_feedback</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="frequency_feedback">804</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>latency_feedback</spirit:name>
+          <spirit:displayName>latency_feedback</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="latency_feedback">3</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>force_elaborate</spirit:name>
+          <spirit:displayName>force_elaborate</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="force_elaborate">1</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>selected_device_family</spirit:name>
+          <spirit:displayName>selected_device_family</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="selected_device_family">Arria 10</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>selected_device_part</spirit:name>
+          <spirit:displayName>selected_device_part</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="selected_device_part">10AX115N2F40E2LG</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>selected_device_speedgrade</spirit:name>
+          <spirit:displayName>selected_device_speedgrade</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="selected_device_speedgrade">2</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>validation_failed</spirit:name>
+          <spirit:displayName>validation_failed</spirit:displayName>
+          <spirit:value spirit:format="bool" spirit:id="validation_failed">false</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>RES_DSP_param</spirit:name>
+          <spirit:displayName>DSP Blocks</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="RES_DSP_param">1</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>RES_LUT_param</spirit:name>
+          <spirit:displayName>LUTs</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="RES_LUT_param">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>RES_MBIT_param</spirit:name>
+          <spirit:displayName>Memory Bits</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="RES_MBIT_param">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>RES_MBLOCK_param</spirit:name>
+          <spirit:displayName>Memory Blocks</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="RES_MBLOCK_param">0</spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </altera:altera_module_parameters>
+    <altera:altera_system_parameters>
+      <spirit:parameters>
+        <spirit:parameter>
+          <spirit:name>device</spirit:name>
+          <spirit:displayName>Device</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="device">10AX115N2F40E2LG</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>deviceFamily</spirit:name>
+          <spirit:displayName>Device family</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="deviceFamily">Arria 10</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>deviceSpeedGrade</spirit:name>
+          <spirit:displayName>Device Speed Grade</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="deviceSpeedGrade">2</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>generationId</spirit:name>
+          <spirit:displayName>Generation Id</spirit:displayName>
+          <spirit:value spirit:format="long" spirit:id="generationId">0</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>bonusData</spirit:name>
+          <spirit:displayName>bonusData</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="bonusData">bonusData 
+{
+   element fxp_functions_0
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+}
+</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>hideFromIPCatalog</spirit:name>
+          <spirit:displayName>Hide from IP Catalog</spirit:displayName>
+          <spirit:value spirit:format="bool" spirit:id="hideFromIPCatalog">true</spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>lockedInterfaceDefinition</spirit:name>
+          <spirit:displayName>lockedInterfaceDefinition</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="lockedInterfaceDefinition"></spirit:value>
+        </spirit:parameter>
+        <spirit:parameter>
+          <spirit:name>systemInfos</spirit:name>
+          <spirit:displayName>systemInfos</spirit:displayName>
+          <spirit:value spirit:format="string" spirit:id="systemInfos"><![CDATA[<systemInfosDefinition>
+    <connPtSystemInfos/>
+</systemInfosDefinition>]]></spirit:value>
+        </spirit:parameter>
+      </spirit:parameters>
+    </altera:altera_system_parameters>
+    <altera:altera_interface_boundary>
+      <altera:interface_mapping altera:name="a" altera:internal="fxp_functions_0.a" altera:type="conduit" altera:dir="end">
+        <altera:port_mapping altera:name="a" altera:internal="a"></altera:port_mapping>
+      </altera:interface_mapping>
+      <altera:interface_mapping altera:name="a0" altera:internal="fxp_functions_0.a0"></altera:interface_mapping>
+      <altera:interface_mapping altera:name="a1" altera:internal="fxp_functions_0.a1"></altera:interface_mapping>
+      <altera:interface_mapping altera:name="b" altera:internal="fxp_functions_0.b" altera:type="conduit" altera:dir="end">
+        <altera:port_mapping altera:name="b" altera:internal="b"></altera:port_mapping>
+      </altera:interface_mapping>
+      <altera:interface_mapping altera:name="clk" altera:internal="fxp_functions_0.clk" altera:type="clock" altera:dir="end">
+        <altera:port_mapping altera:name="clk" altera:internal="clk"></altera:port_mapping>
+      </altera:interface_mapping>
+      <altera:interface_mapping altera:name="denominator" altera:internal="fxp_functions_0.denominator"></altera:interface_mapping>
+      <altera:interface_mapping altera:name="en" altera:internal="fxp_functions_0.en" altera:type="conduit" altera:dir="end">
+        <altera:port_mapping altera:name="en" altera:internal="en"></altera:port_mapping>
+      </altera:interface_mapping>
+      <altera:interface_mapping altera:name="numerator" altera:internal="fxp_functions_0.numerator"></altera:interface_mapping>
+      <altera:interface_mapping altera:name="result" altera:internal="fxp_functions_0.result" altera:type="conduit" altera:dir="end">
+        <altera:port_mapping altera:name="result" altera:internal="result"></altera:port_mapping>
+      </altera:interface_mapping>
+      <altera:interface_mapping altera:name="rst" altera:internal="fxp_functions_0.rst" altera:type="reset" altera:dir="end">
+        <altera:port_mapping altera:name="rst" altera:internal="rst"></altera:port_mapping>
+      </altera:interface_mapping>
+    </altera:altera_interface_boundary>
+    <altera:altera_has_warnings>true</altera:altera_has_warnings>
+    <altera:altera_has_errors>false</altera:altera_has_errors>
+  </spirit:vendorExtensions>
+</spirit:component>

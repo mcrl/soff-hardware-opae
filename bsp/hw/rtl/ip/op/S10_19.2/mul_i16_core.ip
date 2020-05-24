@@ -1,0 +1,924 @@
+<?xml version="1.0" ?>
+<ipxact:component xmlns:altera="http://www.altera.com/XMLSchema/IPXact2014/extensions" xmlns:ipxact="http://www.accellera.org/XMLSchema/IPXACT/1685-2014">
+  <ipxact:vendor>Intel Corporation</ipxact:vendor>
+  <ipxact:library>mul_i16_core_S10</ipxact:library>
+  <ipxact:name>fxp_functions_0</ipxact:name>
+  <ipxact:version>19.1</ipxact:version>
+  <ipxact:busInterfaces>
+    <ipxact:busInterface>
+      <ipxact:name>clk</ipxact:name>
+      <ipxact:busType vendor="altera" library="altera" name="clock" version="19.2"></ipxact:busType>
+      <ipxact:abstractionTypes>
+        <ipxact:abstractionType>
+          <ipxact:abstractionRef vendor="altera" library="altera" name="clock" version="19.2"></ipxact:abstractionRef>
+          <ipxact:portMaps>
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>clk</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>clk</ipxact:name>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+          </ipxact:portMaps>
+        </ipxact:abstractionType>
+      </ipxact:abstractionTypes>
+      <ipxact:slave></ipxact:slave>
+      <ipxact:parameters>
+        <ipxact:parameter parameterId="clockRate" type="longint">
+          <ipxact:name>clockRate</ipxact:name>
+          <ipxact:displayName>Clock rate</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="externallyDriven" type="bit">
+          <ipxact:name>externallyDriven</ipxact:name>
+          <ipxact:displayName>Externally driven</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="ptfSchematicName" type="string">
+          <ipxact:name>ptfSchematicName</ipxact:name>
+          <ipxact:displayName>PTF schematic name</ipxact:displayName>
+          <ipxact:value></ipxact:value>
+        </ipxact:parameter>
+      </ipxact:parameters>
+    </ipxact:busInterface>
+    <ipxact:busInterface>
+      <ipxact:name>rst</ipxact:name>
+      <ipxact:busType vendor="altera" library="altera" name="reset" version="19.2"></ipxact:busType>
+      <ipxact:abstractionTypes>
+        <ipxact:abstractionType>
+          <ipxact:abstractionRef vendor="altera" library="altera" name="reset" version="19.2"></ipxact:abstractionRef>
+          <ipxact:portMaps>
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>reset</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>rst</ipxact:name>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+          </ipxact:portMaps>
+        </ipxact:abstractionType>
+      </ipxact:abstractionTypes>
+      <ipxact:slave></ipxact:slave>
+      <ipxact:parameters>
+        <ipxact:parameter parameterId="associatedClock" type="string">
+          <ipxact:name>associatedClock</ipxact:name>
+          <ipxact:displayName>Associated clock</ipxact:displayName>
+          <ipxact:value>clk</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="synchronousEdges" type="string">
+          <ipxact:name>synchronousEdges</ipxact:name>
+          <ipxact:displayName>Synchronous edges</ipxact:displayName>
+          <ipxact:value>DEASSERT</ipxact:value>
+        </ipxact:parameter>
+      </ipxact:parameters>
+    </ipxact:busInterface>
+    <ipxact:busInterface>
+      <ipxact:name>en</ipxact:name>
+      <ipxact:busType vendor="altera" library="altera" name="conduit" version="19.2"></ipxact:busType>
+      <ipxact:abstractionTypes>
+        <ipxact:abstractionType>
+          <ipxact:abstractionRef vendor="altera" library="altera" name="conduit" version="19.2"></ipxact:abstractionRef>
+          <ipxact:portMaps>
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>en</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>en</ipxact:name>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+          </ipxact:portMaps>
+        </ipxact:abstractionType>
+      </ipxact:abstractionTypes>
+      <ipxact:slave></ipxact:slave>
+      <ipxact:parameters>
+        <ipxact:parameter parameterId="associatedClock" type="string">
+          <ipxact:name>associatedClock</ipxact:name>
+          <ipxact:displayName>associatedClock</ipxact:displayName>
+          <ipxact:value>clk</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="associatedReset" type="string">
+          <ipxact:name>associatedReset</ipxact:name>
+          <ipxact:displayName>associatedReset</ipxact:displayName>
+          <ipxact:value></ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="prSafe" type="bit">
+          <ipxact:name>prSafe</ipxact:name>
+          <ipxact:displayName>Partial Reconfiguration Safe</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+      </ipxact:parameters>
+    </ipxact:busInterface>
+    <ipxact:busInterface>
+      <ipxact:name>a</ipxact:name>
+      <ipxact:busType vendor="altera" library="altera" name="conduit" version="19.2"></ipxact:busType>
+      <ipxact:abstractionTypes>
+        <ipxact:abstractionType>
+          <ipxact:abstractionRef vendor="altera" library="altera" name="conduit" version="19.2"></ipxact:abstractionRef>
+          <ipxact:portMaps>
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>a</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>a</ipxact:name>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+          </ipxact:portMaps>
+        </ipxact:abstractionType>
+      </ipxact:abstractionTypes>
+      <ipxact:slave></ipxact:slave>
+      <ipxact:parameters>
+        <ipxact:parameter parameterId="associatedClock" type="string">
+          <ipxact:name>associatedClock</ipxact:name>
+          <ipxact:displayName>associatedClock</ipxact:displayName>
+          <ipxact:value>clk</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="associatedReset" type="string">
+          <ipxact:name>associatedReset</ipxact:name>
+          <ipxact:displayName>associatedReset</ipxact:displayName>
+          <ipxact:value>rst</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="prSafe" type="bit">
+          <ipxact:name>prSafe</ipxact:name>
+          <ipxact:displayName>Partial Reconfiguration Safe</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+      </ipxact:parameters>
+    </ipxact:busInterface>
+    <ipxact:busInterface>
+      <ipxact:name>b</ipxact:name>
+      <ipxact:busType vendor="altera" library="altera" name="conduit" version="19.2"></ipxact:busType>
+      <ipxact:abstractionTypes>
+        <ipxact:abstractionType>
+          <ipxact:abstractionRef vendor="altera" library="altera" name="conduit" version="19.2"></ipxact:abstractionRef>
+          <ipxact:portMaps>
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>b</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>b</ipxact:name>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+          </ipxact:portMaps>
+        </ipxact:abstractionType>
+      </ipxact:abstractionTypes>
+      <ipxact:slave></ipxact:slave>
+      <ipxact:parameters>
+        <ipxact:parameter parameterId="associatedClock" type="string">
+          <ipxact:name>associatedClock</ipxact:name>
+          <ipxact:displayName>associatedClock</ipxact:displayName>
+          <ipxact:value>clk</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="associatedReset" type="string">
+          <ipxact:name>associatedReset</ipxact:name>
+          <ipxact:displayName>associatedReset</ipxact:displayName>
+          <ipxact:value>rst</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="prSafe" type="bit">
+          <ipxact:name>prSafe</ipxact:name>
+          <ipxact:displayName>Partial Reconfiguration Safe</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+      </ipxact:parameters>
+    </ipxact:busInterface>
+    <ipxact:busInterface>
+      <ipxact:name>result</ipxact:name>
+      <ipxact:busType vendor="altera" library="altera" name="conduit" version="19.2"></ipxact:busType>
+      <ipxact:abstractionTypes>
+        <ipxact:abstractionType>
+          <ipxact:abstractionRef vendor="altera" library="altera" name="conduit" version="19.2"></ipxact:abstractionRef>
+          <ipxact:portMaps>
+            <ipxact:portMap>
+              <ipxact:logicalPort>
+                <ipxact:name>result</ipxact:name>
+              </ipxact:logicalPort>
+              <ipxact:physicalPort>
+                <ipxact:name>result</ipxact:name>
+              </ipxact:physicalPort>
+            </ipxact:portMap>
+          </ipxact:portMaps>
+        </ipxact:abstractionType>
+      </ipxact:abstractionTypes>
+      <ipxact:slave></ipxact:slave>
+      <ipxact:parameters>
+        <ipxact:parameter parameterId="associatedClock" type="string">
+          <ipxact:name>associatedClock</ipxact:name>
+          <ipxact:displayName>associatedClock</ipxact:displayName>
+          <ipxact:value>clk</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="associatedReset" type="string">
+          <ipxact:name>associatedReset</ipxact:name>
+          <ipxact:displayName>associatedReset</ipxact:displayName>
+          <ipxact:value></ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="prSafe" type="bit">
+          <ipxact:name>prSafe</ipxact:name>
+          <ipxact:displayName>Partial Reconfiguration Safe</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+      </ipxact:parameters>
+      <ipxact:vendorExtensions>
+        <altera:altera_assignments>
+          <ipxact:parameters>
+            <ipxact:parameter parameterId="ui.blockdiagram.direction" type="string">
+              <ipxact:name>ui.blockdiagram.direction</ipxact:name>
+              <ipxact:value>OUTPUT</ipxact:value>
+            </ipxact:parameter>
+          </ipxact:parameters>
+        </altera:altera_assignments>
+      </ipxact:vendorExtensions>
+    </ipxact:busInterface>
+  </ipxact:busInterfaces>
+  <ipxact:model>
+    <ipxact:views>
+      <ipxact:view>
+        <ipxact:name>QUARTUS_SYNTH</ipxact:name>
+        <ipxact:envIdentifier>:quartus.altera.com:</ipxact:envIdentifier>
+        <ipxact:componentInstantiationRef>QUARTUS_SYNTH</ipxact:componentInstantiationRef>
+      </ipxact:view>
+    </ipxact:views>
+    <ipxact:instantiations>
+      <ipxact:componentInstantiation>
+        <ipxact:name>QUARTUS_SYNTH</ipxact:name>
+        <ipxact:moduleName>altera_fxp_functions</ipxact:moduleName>
+        <ipxact:fileSetRef>
+          <ipxact:localName>QUARTUS_SYNTH</ipxact:localName>
+        </ipxact:fileSetRef>
+      </ipxact:componentInstantiation>
+    </ipxact:instantiations>
+    <ipxact:ports>
+      <ipxact:port>
+        <ipxact:name>clk</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>in</ipxact:direction>
+          <ipxact:wireTypeDefs>
+            <ipxact:wireTypeDef>
+              <ipxact:typeName>STD_LOGIC</ipxact:typeName>
+              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+        </ipxact:wire>
+      </ipxact:port>
+      <ipxact:port>
+        <ipxact:name>rst</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>in</ipxact:direction>
+          <ipxact:wireTypeDefs>
+            <ipxact:wireTypeDef>
+              <ipxact:typeName>STD_LOGIC</ipxact:typeName>
+              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+        </ipxact:wire>
+      </ipxact:port>
+      <ipxact:port>
+        <ipxact:name>en</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>in</ipxact:direction>
+          <ipxact:wireTypeDefs>
+            <ipxact:wireTypeDef>
+              <ipxact:typeName>STD_LOGIC_VECTOR</ipxact:typeName>
+              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+        </ipxact:wire>
+      </ipxact:port>
+      <ipxact:port>
+        <ipxact:name>a</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>in</ipxact:direction>
+          <ipxact:vectors>
+            <ipxact:vector>
+              <ipxact:left>0</ipxact:left>
+              <ipxact:right>15</ipxact:right>
+            </ipxact:vector>
+          </ipxact:vectors>
+          <ipxact:wireTypeDefs>
+            <ipxact:wireTypeDef>
+              <ipxact:typeName>STD_LOGIC_VECTOR</ipxact:typeName>
+              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+        </ipxact:wire>
+      </ipxact:port>
+      <ipxact:port>
+        <ipxact:name>b</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>in</ipxact:direction>
+          <ipxact:vectors>
+            <ipxact:vector>
+              <ipxact:left>0</ipxact:left>
+              <ipxact:right>15</ipxact:right>
+            </ipxact:vector>
+          </ipxact:vectors>
+          <ipxact:wireTypeDefs>
+            <ipxact:wireTypeDef>
+              <ipxact:typeName>STD_LOGIC_VECTOR</ipxact:typeName>
+              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+        </ipxact:wire>
+      </ipxact:port>
+      <ipxact:port>
+        <ipxact:name>result</ipxact:name>
+        <ipxact:wire>
+          <ipxact:direction>out</ipxact:direction>
+          <ipxact:vectors>
+            <ipxact:vector>
+              <ipxact:left>0</ipxact:left>
+              <ipxact:right>31</ipxact:right>
+            </ipxact:vector>
+          </ipxact:vectors>
+          <ipxact:wireTypeDefs>
+            <ipxact:wireTypeDef>
+              <ipxact:typeName>STD_LOGIC_VECTOR</ipxact:typeName>
+              <ipxact:viewRef>QUARTUS_SYNTH</ipxact:viewRef>
+            </ipxact:wireTypeDef>
+          </ipxact:wireTypeDefs>
+        </ipxact:wire>
+      </ipxact:port>
+    </ipxact:ports>
+  </ipxact:model>
+  <ipxact:vendorExtensions>
+    <altera:entity_info>
+      <ipxact:vendor>Intel Corporation</ipxact:vendor>
+      <ipxact:library>mul_i16_core_S10</ipxact:library>
+      <ipxact:name>altera_fxp_functions</ipxact:name>
+      <ipxact:version>19.1</ipxact:version>
+    </altera:entity_info>
+    <altera:altera_module_parameters>
+      <ipxact:parameters>
+        <ipxact:parameter parameterId="defer_output_format_calc" type="bit">
+          <ipxact:name>defer_output_format_calc</ipxact:name>
+          <ipxact:displayName>defer_output_format_calc</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="FUNCTION_FAMILY" type="string">
+          <ipxact:name>FUNCTION_FAMILY</ipxact:name>
+          <ipxact:displayName>Family</ipxact:displayName>
+          <ipxact:value>ALL</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="derived_function" type="string">
+          <ipxact:name>derived_function</ipxact:name>
+          <ipxact:displayName>derived_function</ipxact:displayName>
+          <ipxact:value>MUL</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="ALL_function" type="string">
+          <ipxact:name>ALL_function</ipxact:name>
+          <ipxact:displayName>Function</ipxact:displayName>
+          <ipxact:value>MUL</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="frequency_target" type="int">
+          <ipxact:name>frequency_target</ipxact:name>
+          <ipxact:displayName>Target</ipxact:displayName>
+          <ipxact:value>300</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="latency_target" type="int">
+          <ipxact:name>latency_target</ipxact:name>
+          <ipxact:displayName>Target</ipxact:displayName>
+          <ipxact:value>6</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="performance_goal" type="string">
+          <ipxact:name>performance_goal</ipxact:name>
+          <ipxact:displayName>Goal</ipxact:displayName>
+          <ipxact:value>latency</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="common_sign" type="string">
+          <ipxact:name>common_sign</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="common_width" type="int">
+          <ipxact:name>common_width</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>32</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="complex_format" type="bit">
+          <ipxact:name>complex_format</ipxact:name>
+          <ipxact:displayName>Complex data </ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="complex_karatsuba" type="bit">
+          <ipxact:name>complex_karatsuba</ipxact:name>
+          <ipxact:displayName>Karatsuba complex multiplication</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="auto_output_type" type="bit">
+          <ipxact:name>auto_output_type</ipxact:name>
+          <ipxact:displayName>Automatic output type</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="gen_enable" type="bit">
+          <ipxact:name>gen_enable</ipxact:name>
+          <ipxact:displayName>Generate an enable port</ipxact:displayName>
+          <ipxact:value>true</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="add_no_growth" type="bit">
+          <ipxact:name>add_no_growth</ipxact:name>
+          <ipxact:displayName>Disable adder word growth</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="force_mult_in_logic" type="bit">
+          <ipxact:name>force_mult_in_logic</ipxact:name>
+          <ipxact:displayName>Force multiplication in logic</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="report_resources_to_xml" type="bit">
+          <ipxact:name>report_resources_to_xml</ipxact:name>
+          <ipxact:displayName>report_resources_to_xml</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="a_fxp_in_width" type="int">
+          <ipxact:name>a_fxp_in_width</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>16</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="a_fxp_in_sign" type="string">
+          <ipxact:name>a_fxp_in_sign</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>1</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="a_fxp_in_fraction" type="int">
+          <ipxact:name>a_fxp_in_fraction</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="a_fxp_in_fraction_derived" type="string">
+          <ipxact:name>a_fxp_in_fraction_derived</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="a_fxp_in_width_derived" type="string">
+          <ipxact:name>a_fxp_in_width_derived</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>16</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="a_fxp_in_sign_derived" type="string">
+          <ipxact:name>a_fxp_in_sign_derived</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>1</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="b_fxp_in_width" type="int">
+          <ipxact:name>b_fxp_in_width</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>16</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="b_fxp_in_sign" type="string">
+          <ipxact:name>b_fxp_in_sign</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>1</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="b_fxp_in_fraction" type="int">
+          <ipxact:name>b_fxp_in_fraction</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="b_fxp_in_fraction_derived" type="string">
+          <ipxact:name>b_fxp_in_fraction_derived</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="b_fxp_in_width_derived" type="string">
+          <ipxact:name>b_fxp_in_width_derived</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>16</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="b_fxp_in_sign_derived" type="string">
+          <ipxact:name>b_fxp_in_sign_derived</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>1</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="numerator_fxp_in_width" type="int">
+          <ipxact:name>numerator_fxp_in_width</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>32</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="numerator_fxp_in_sign" type="string">
+          <ipxact:name>numerator_fxp_in_sign</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>1</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="numerator_fxp_in_fraction" type="int">
+          <ipxact:name>numerator_fxp_in_fraction</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="numerator_fxp_in_fraction_derived" type="string">
+          <ipxact:name>numerator_fxp_in_fraction_derived</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="numerator_fxp_in_width_derived" type="string">
+          <ipxact:name>numerator_fxp_in_width_derived</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="numerator_fxp_in_sign_derived" type="string">
+          <ipxact:name>numerator_fxp_in_sign_derived</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="denominator_fxp_in_width" type="int">
+          <ipxact:name>denominator_fxp_in_width</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>32</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="denominator_fxp_in_sign" type="string">
+          <ipxact:name>denominator_fxp_in_sign</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>1</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="denominator_fxp_in_fraction" type="int">
+          <ipxact:name>denominator_fxp_in_fraction</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="denominator_fxp_in_fraction_derived" type="string">
+          <ipxact:name>denominator_fxp_in_fraction_derived</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="denominator_fxp_in_width_derived" type="string">
+          <ipxact:name>denominator_fxp_in_width_derived</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="denominator_fxp_in_sign_derived" type="string">
+          <ipxact:name>denominator_fxp_in_sign_derived</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="radical_fxp_in_width" type="int">
+          <ipxact:name>radical_fxp_in_width</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>32</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="radical_fxp_in_sign" type="string">
+          <ipxact:name>radical_fxp_in_sign</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="radical_fxp_in_fraction" type="int">
+          <ipxact:name>radical_fxp_in_fraction</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="radical_fxp_in_fraction_derived" type="string">
+          <ipxact:name>radical_fxp_in_fraction_derived</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="radical_fxp_in_width_derived" type="string">
+          <ipxact:name>radical_fxp_in_width_derived</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="radical_fxp_in_sign_derived" type="string">
+          <ipxact:name>radical_fxp_in_sign_derived</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="result_fxp_out_width" type="int">
+          <ipxact:name>result_fxp_out_width</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>32</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="result_fxp_out_sign" type="string">
+          <ipxact:name>result_fxp_out_sign</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>1</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="result_fxp_out_fraction" type="int">
+          <ipxact:name>result_fxp_out_fraction</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="result_fxp_out_fraction_derived" type="string">
+          <ipxact:name>result_fxp_out_fraction_derived</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="result_fxp_out_width_derived" type="string">
+          <ipxact:name>result_fxp_out_width_derived</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>32</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="result_fxp_out_sign_derived" type="string">
+          <ipxact:name>result_fxp_out_sign_derived</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>1</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="a_in_derived_name_list" type="string">
+          <ipxact:name>a_in_derived_name_list</ipxact:name>
+          <ipxact:displayName>Input Name</ipxact:displayName>
+          <ipxact:value>a0,a1</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="a_in_width_list" type="string">
+          <ipxact:name>a_in_width_list</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>32,32</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="a_in_sign_list" type="string">
+          <ipxact:name>a_in_sign_list</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>signed,signed</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="a_in_fraction_list" type="string">
+          <ipxact:name>a_in_fraction_list</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>0,0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="a_in_derived_width_list" type="string">
+          <ipxact:name>a_in_derived_width_list</ipxact:name>
+          <ipxact:displayName>a_in_derived_width_list</ipxact:displayName>
+          <ipxact:value>32,32</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="a_in_derived_sign_list" type="string">
+          <ipxact:name>a_in_derived_sign_list</ipxact:name>
+          <ipxact:displayName>a_in_derived_sign_list</ipxact:displayName>
+          <ipxact:value>1,1</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="a_in_derived_fraction_list" type="string">
+          <ipxact:name>a_in_derived_fraction_list</ipxact:name>
+          <ipxact:displayName>a_in_derived_fraction_list</ipxact:displayName>
+          <ipxact:value>0,0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="start_value" type="int">
+          <ipxact:name>start_value</ipxact:name>
+          <ipxact:displayName>Start value</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="step_value" type="int">
+          <ipxact:name>step_value</ipxact:name>
+          <ipxact:displayName>Step</ipxact:displayName>
+          <ipxact:value>1</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="limit_value" type="int">
+          <ipxact:name>limit_value</ipxact:name>
+          <ipxact:displayName>Limit</ipxact:displayName>
+          <ipxact:value>65536</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="start_fxp_in_width" type="int">
+          <ipxact:name>start_fxp_in_width</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>16</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="start_fxp_in_sign" type="string">
+          <ipxact:name>start_fxp_in_sign</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="start_fxp_in_fraction" type="int">
+          <ipxact:name>start_fxp_in_fraction</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="start_fxp_in_fraction_derived" type="string">
+          <ipxact:name>start_fxp_in_fraction_derived</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="start_fxp_in_width_derived" type="string">
+          <ipxact:name>start_fxp_in_width_derived</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="start_fxp_in_sign_derived" type="string">
+          <ipxact:name>start_fxp_in_sign_derived</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="step_fxp_in_width" type="int">
+          <ipxact:name>step_fxp_in_width</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>16</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="step_fxp_in_sign" type="string">
+          <ipxact:name>step_fxp_in_sign</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="step_fxp_in_fraction" type="int">
+          <ipxact:name>step_fxp_in_fraction</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="step_fxp_in_fraction_derived" type="string">
+          <ipxact:name>step_fxp_in_fraction_derived</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="step_fxp_in_width_derived" type="string">
+          <ipxact:name>step_fxp_in_width_derived</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="step_fxp_in_sign_derived" type="string">
+          <ipxact:name>step_fxp_in_sign_derived</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="limit_fxp_in_width" type="int">
+          <ipxact:name>limit_fxp_in_width</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>16</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="limit_fxp_in_sign" type="string">
+          <ipxact:name>limit_fxp_in_sign</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="limit_fxp_in_fraction" type="int">
+          <ipxact:name>limit_fxp_in_fraction</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="limit_fxp_in_fraction_derived" type="string">
+          <ipxact:name>limit_fxp_in_fraction_derived</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="limit_fxp_in_width_derived" type="string">
+          <ipxact:name>limit_fxp_in_width_derived</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="limit_fxp_in_sign_derived" type="string">
+          <ipxact:name>limit_fxp_in_sign_derived</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="value_fxp_out_width" type="int">
+          <ipxact:name>value_fxp_out_width</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>32</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="value_fxp_out_sign" type="string">
+          <ipxact:name>value_fxp_out_sign</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="value_fxp_out_fraction" type="int">
+          <ipxact:name>value_fxp_out_fraction</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="value_fxp_out_fraction_derived" type="string">
+          <ipxact:name>value_fxp_out_fraction_derived</ipxact:name>
+          <ipxact:displayName>Fraction</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="value_fxp_out_width_derived" type="string">
+          <ipxact:name>value_fxp_out_width_derived</ipxact:name>
+          <ipxact:displayName>Width</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="value_fxp_out_sign_derived" type="string">
+          <ipxact:name>value_fxp_out_sign_derived</ipxact:name>
+          <ipxact:displayName>Sign</ipxact:displayName>
+          <ipxact:value>initialization default</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="frequency_feedback" type="int">
+          <ipxact:name>frequency_feedback</ipxact:name>
+          <ipxact:displayName>frequency_feedback</ipxact:displayName>
+          <ipxact:value>804</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="latency_feedback" type="int">
+          <ipxact:name>latency_feedback</ipxact:name>
+          <ipxact:displayName>latency_feedback</ipxact:displayName>
+          <ipxact:value>6</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="force_elaborate" type="int">
+          <ipxact:name>force_elaborate</ipxact:name>
+          <ipxact:displayName>force_elaborate</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="selected_device_family" type="string">
+          <ipxact:name>selected_device_family</ipxact:name>
+          <ipxact:displayName>selected_device_family</ipxact:displayName>
+          <ipxact:value>Stratix 10</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="selected_device_part" type="string">
+          <ipxact:name>selected_device_part</ipxact:name>
+          <ipxact:displayName>selected_device_part</ipxact:displayName>
+          <ipxact:value>1SX280HN2F43E2VG</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="selected_device_speedgrade" type="string">
+          <ipxact:name>selected_device_speedgrade</ipxact:name>
+          <ipxact:displayName>selected_device_speedgrade</ipxact:displayName>
+          <ipxact:value>2</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="validation_failed" type="bit">
+          <ipxact:name>validation_failed</ipxact:name>
+          <ipxact:displayName>validation_failed</ipxact:displayName>
+          <ipxact:value>false</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="RES_DSP_param" type="int">
+          <ipxact:name>RES_DSP_param</ipxact:name>
+          <ipxact:displayName>DSP Blocks</ipxact:displayName>
+          <ipxact:value>1</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="RES_LUT_param" type="int">
+          <ipxact:name>RES_LUT_param</ipxact:name>
+          <ipxact:displayName>LUTs</ipxact:displayName>
+          <ipxact:value>16</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="RES_MBIT_param" type="int">
+          <ipxact:name>RES_MBIT_param</ipxact:name>
+          <ipxact:displayName>Memory Bits</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="RES_MBLOCK_param" type="int">
+          <ipxact:name>RES_MBLOCK_param</ipxact:name>
+          <ipxact:displayName>Memory Blocks</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+      </ipxact:parameters>
+    </altera:altera_module_parameters>
+    <altera:altera_system_parameters>
+      <ipxact:parameters>
+        <ipxact:parameter parameterId="device" type="string">
+          <ipxact:name>device</ipxact:name>
+          <ipxact:displayName>Device</ipxact:displayName>
+          <ipxact:value>1SX280HN2F43E2VG</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="deviceFamily" type="string">
+          <ipxact:name>deviceFamily</ipxact:name>
+          <ipxact:displayName>Device family</ipxact:displayName>
+          <ipxact:value>Stratix 10</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="deviceSpeedGrade" type="string">
+          <ipxact:name>deviceSpeedGrade</ipxact:name>
+          <ipxact:displayName>Device Speed Grade</ipxact:displayName>
+          <ipxact:value>2</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="generationId" type="int">
+          <ipxact:name>generationId</ipxact:name>
+          <ipxact:displayName>Generation Id</ipxact:displayName>
+          <ipxact:value>0</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="bonusData" type="string">
+          <ipxact:name>bonusData</ipxact:name>
+          <ipxact:displayName>bonusData</ipxact:displayName>
+          <ipxact:value>bonusData 
+{
+   element fxp_functions_0
+   {
+      datum _sortIndex
+      {
+         value = "0";
+         type = "int";
+      }
+   }
+}
+</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="hideFromIPCatalog" type="bit">
+          <ipxact:name>hideFromIPCatalog</ipxact:name>
+          <ipxact:displayName>Hide from IP Catalog</ipxact:displayName>
+          <ipxact:value>true</ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="lockedInterfaceDefinition" type="string">
+          <ipxact:name>lockedInterfaceDefinition</ipxact:name>
+          <ipxact:displayName>lockedInterfaceDefinition</ipxact:displayName>
+          <ipxact:value></ipxact:value>
+        </ipxact:parameter>
+        <ipxact:parameter parameterId="systemInfos" type="string">
+          <ipxact:name>systemInfos</ipxact:name>
+          <ipxact:displayName>systemInfos</ipxact:displayName>
+          <ipxact:value>&lt;systemInfosDefinition&gt;
+    &lt;connPtSystemInfos/&gt;
+&lt;/systemInfosDefinition&gt;</ipxact:value>
+        </ipxact:parameter>
+      </ipxact:parameters>
+    </altera:altera_system_parameters>
+    <altera:altera_interface_boundary>
+      <altera:interface_mapping altera:name="a" altera:internal="fxp_functions_0.a" altera:type="conduit" altera:dir="end">
+        <altera:port_mapping altera:name="a" altera:internal="a"></altera:port_mapping>
+      </altera:interface_mapping>
+      <altera:interface_mapping altera:name="a0" altera:internal="fxp_functions_0.a0"></altera:interface_mapping>
+      <altera:interface_mapping altera:name="a1" altera:internal="fxp_functions_0.a1"></altera:interface_mapping>
+      <altera:interface_mapping altera:name="b" altera:internal="fxp_functions_0.b" altera:type="conduit" altera:dir="end">
+        <altera:port_mapping altera:name="b" altera:internal="b"></altera:port_mapping>
+      </altera:interface_mapping>
+      <altera:interface_mapping altera:name="clk" altera:internal="fxp_functions_0.clk" altera:type="clock" altera:dir="end">
+        <altera:port_mapping altera:name="clk" altera:internal="clk"></altera:port_mapping>
+      </altera:interface_mapping>
+      <altera:interface_mapping altera:name="en" altera:internal="fxp_functions_0.en" altera:type="conduit" altera:dir="end">
+        <altera:port_mapping altera:name="en" altera:internal="en"></altera:port_mapping>
+      </altera:interface_mapping>
+      <altera:interface_mapping altera:name="result" altera:internal="fxp_functions_0.result" altera:type="conduit" altera:dir="end">
+        <altera:port_mapping altera:name="result" altera:internal="result"></altera:port_mapping>
+      </altera:interface_mapping>
+      <altera:interface_mapping altera:name="rst" altera:internal="fxp_functions_0.rst" altera:type="reset" altera:dir="end">
+        <altera:port_mapping altera:name="rst" altera:internal="rst"></altera:port_mapping>
+      </altera:interface_mapping>
+    </altera:altera_interface_boundary>
+    <altera:altera_has_warnings>false</altera:altera_has_warnings>
+    <altera:altera_has_errors>false</altera:altera_has_errors>
+  </ipxact:vendorExtensions>
+</ipxact:component>
